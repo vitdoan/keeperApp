@@ -9,11 +9,14 @@ function App() {
   function addNote(input){
     setNotes(prev=>([...prev,input]));
   }
+  function deleteNote(id){
+    setNotes(prev=>prev.filter((note,index) => index !== id));
+  }
 	return (
 		<div>
 			<Header />
 			<CreateArea addNote={addNote} />
-      {notes.map((note,index) => (<Note key={index} title={note.title} content={note.content} />))}
+      {notes.map((note,index) => (<Note key={index} id={index} title={note.title} content={note.content} onDelete={deleteNote} />))}
 			<Footer />
 		</div>
 	);
